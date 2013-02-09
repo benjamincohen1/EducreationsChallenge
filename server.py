@@ -10,8 +10,10 @@ def api_echo():
             j=json.dumps(request.json) #gets JSON and stores it in J
             goodJSON=json.loads(j) #parses it into python dicts
             l=goodJSON['puzzle'] #sets l to the puzzle 
-            answer=solvePuzzle(l) #solves L
-            r=json.dumps({'solution' : answer})  #puts the answer in JSON
+
+            answer,path=solvePuzzle(l) #solves L
+
+            r=json.dumps({'weight' : answer,'path' : path})  #puts the answer in JSON
             resp=Response(r) #makes a response with the answer
             return resp #answers!
 
